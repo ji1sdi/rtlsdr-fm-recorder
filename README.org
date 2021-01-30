@@ -1,0 +1,15 @@
+#+title: RTLSDR-FM-RECORDER
+
+This is a collection of shell scripts to record FM-radio program with
+RTL-SDR.
+
+* Setup
+** Requirements
+
+- rtl-sdr linux drivers and utilities
+- ffmpeg
+- systemd
+
+
+ 
+
