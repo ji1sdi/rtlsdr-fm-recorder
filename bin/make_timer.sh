@@ -29,4 +29,4 @@ BIN=/home/shota/Projects/rtlsdr-fm-recorder/bin/rtlsdr-recorder.sh
 systemd-analyze calendar \"$4\"
 
 sed -e 's/FREQ/\"'$1'\"/;' ./templates/template.timer | sed -e "s!CALENDAR!$4!; s!PROG!$5!" > ./timers/record-$5-$1-$2.timer
-sed -e 's/FREQ/'$1'/;s/PROG/'$5'/;s/TIMEWINDOW/'$2'/;s!BIN!'$BIN'!;s!OFNAME!'$5'.mp3!' ./templates/template.service  > ./timers/record-$5-$1-$2.service
+sed -e 's/FREQ/'$1'/;s/PROG/'$5'/;s/TIMEWINDOW/'$2'/;s!BIN!'$BIN'!;s!OFNAME!'$3'!' ./templates/template.service  > ./timers/record-$5-$1-$2.service
