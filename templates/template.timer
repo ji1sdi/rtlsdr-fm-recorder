@@ -1,0 +1,9 @@
+[Unit]
+Description=Systemd.timer to recording the FM-radio PROG (freq=FREQ)
+
+[Timer]
+OnCalendar=CALENDAR
+Persistent=no
+
+[Install]
+WantedBy=timers.target
