@@ -1,7 +1,19 @@
 
+proc=$(pgrep rtl_fm)
+if [ ! -z "$proc" ]; then
+    pkill -TERM rtl_fm && sleep 3 && pkill -TERM rtl_fm
+fi
+proc=$(pgrep rtl_tcp)
+if [ ! -z "$proc" ]; then
+    pkill -TERM rtl_tcp && sleep 3 && pkill -TERM rtl_tcp
+fi
+sleep 5
+
 freq="84.7M"
-ofname="test.mp3"
+ofname="test.DATE.mp3"
 duration=60
+
+date=$(date +%y%m%d%H%M%S)
 
 if [ ! -z "$1" ];then
     freq=$1
@@ -14,4 +26,4 @@ if [ ! -z "$3" ]; then
 fi
 
 #rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - | aplay -r 32000 -f S16_LE
-rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - | ffmpeg -y -f s16le -ar 32000 -ac 1 -i - -t $duration $ofname
+rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - | ffmpeg -y -f s16le -ar 32000 -ac 1 -i - -t $duration ${ofname/DATE/${date}}
