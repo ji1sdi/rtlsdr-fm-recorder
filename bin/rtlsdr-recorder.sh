@@ -25,5 +25,11 @@ if [ ! -z "$3" ]; then
     duration=$3
 fi
 
+echo [debug] $(lsusb)
 #rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - | aplay -r 32000 -f S16_LE
 rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - | ffmpeg -y -f s16le -ar 32000 -ac 1 -i - -t $duration ${ofname/DATE/${date}}
+if [ ! $? -eq 0 ]; then
+    echo Failed something
+    echo [debug] $(lsusb)
+    exit 1;
+fi

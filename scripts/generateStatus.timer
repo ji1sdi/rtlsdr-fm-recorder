@@ -1,0 +1,9 @@
+[Unit]
+Description=Timer to generate RecRadiko's status
+
+[Timer]
+OnCalendar=*:02/10:00
+Persistent=no
+
+[Install]
+WantedBy=timers.target
