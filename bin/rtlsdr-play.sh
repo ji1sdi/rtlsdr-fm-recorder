@@ -6,7 +6,7 @@ if [ ! -z "$1" ];then
 fi
 
 #rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - | aplay -r 32000 -f S16_LE
-rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp,rtlagc,rdc,adc  - |\
+rtl_fm -M wfm -f $freq -m 2.4m -s 170k  -r 32000 -E deemp -E rtlagc -E rdc -E adc -T  - |\
     ffmpeg -f s16le -ar 32000 -ac 1 -i - \
     -c:v libx264 -b:v 1000k -bufsize 1000k \
         -flags +cgop+loop-global_header \
